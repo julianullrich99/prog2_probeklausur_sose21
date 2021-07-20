@@ -8,7 +8,9 @@ template <typename T> class List {
 		~List() {};
 		int count();
 		void insert(T value);
+		void printList();
 		T deleteItem();
+		void operator=(List *list);
 
 		typedef struct el
 		{

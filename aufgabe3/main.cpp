@@ -6,7 +6,7 @@ template <class T> class List;
 
 int main() {
 
-	List<int> integerList = List<int>();
+	List<int> integerList;
 
 	std::cout << integerList.count() << std::endl;
 
@@ -14,10 +14,20 @@ int main() {
 	integerList.insert(3);
 	integerList.insert(2);
 
+	integerList.printList();
+
+	List<int> intList2 = integerList;
+
 	std::cout << integerList.count() << std::endl;
 	std::cout << integerList.deleteItem() << std::endl;
 	std::cout << integerList.deleteItem() << std::endl;
 	std::cout << integerList.count() << std::endl;
+
+	intList2.printList();
+
+	intList2 = &integerList;
+
+	intList2.printList();
 
 	return 0;
 }
