@@ -32,14 +32,13 @@ int CVektor::length() {
 	return this->n;
 }
 
-CVektor CVektor::operator=(CVektor &vector) { 
+void CVektor::operator=(CVektor &vector) { 
 	delete this->f;
 	this->n = vector.length();
 	this->f =  new float[this->n];
 	for (int i = 0; i < this->n; i++) {
 		*(this->f + i) = vector.operator[](i);
 	}
-	return this;
 }
 
 CVektor CVektor::operator+(CVektor &vector) { 
@@ -53,10 +52,9 @@ CVektor CVektor::operator+(CVektor &vector) {
 	return newVec;
 }
 
-CVektor CVektor::operator+=(CVektor &vector) { 
+void CVektor::operator+=(CVektor &vector) { 
 	CVektor ret = *this + vector;
 	*(this) = ret;
-	return this;
 }
 
 
