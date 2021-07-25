@@ -39,11 +39,8 @@ template <typename T> int List<T>::count() {
 template <typename T> void List<T>::insert(T value) {
 	elem* newEl = new elem;
 	newEl->val = value;
-	newEl->next = nullptr;
-
-	elem* curr = this->head;
-	while (curr->next != nullptr) curr = curr->next;
-	curr->next = newEl;
+	newEl->next = this->head->next;
+	this->head->next = newEl;
 }
 
 template <typename T> T List<T>::deleteItem() {
