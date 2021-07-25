@@ -1,5 +1,6 @@
 #include "cvektor.h"
 #include <iostream>
+#include <utility>
 
 CVektor::CVektor(int n, float val) {
 	this->f =  new float[n];
@@ -12,11 +13,12 @@ CVektor::CVektor() {
 	this->n = 0;
 }
 
-CVektor::CVektor(CVektor* vector) {
-	this->n = vector->length();
+CVektor::CVektor(const CVektor &vector) {
+	std::cout << "copy" << std::endl;
+	this->n = vector.n;
 	this->f =  new float[this->n];
 	for (int i = 0; i < this->n; i++) {
-		*(this->f + i) = vector->operator[](i);
+		*(this->f + i) = vector.f[i];
 	}
 }
 
@@ -39,15 +41,17 @@ int CVektor::length() {
 }
 
 void CVektor::operator=(CVektor vector) { 
-	delete this->f;
-	this->n = vector.length();
-	this->f =  new float[this->n];
-	for (int i = 0; i < this->n; i++) {
-		*(this->f + i) = vector.operator[](i);
-	}
+	std::cout << "assign" << std::endl;
+
+	swap(vector);
 }
 
-CVektor CVektor::operator+(CVektor &vector) { 
+void CVektor::swap(CVektor &other) {
+	std::swap(this->f, other.f);
+	std::swap(this->n, other.n);
+}
+
+CVektor CVektor::operator+(CVektor vector) { 
 	const int len = this->length();
 	CVektor newVec = CVektor(len + vector.length(), 0);
 
@@ -58,7 +62,7 @@ CVektor CVektor::operator+(CVektor &vector) {
 	return newVec;
 }
 
-void CVektor::operator+=(CVektor &vector) { 
+void CVektor::operator+=(CVektor vector) { 
 	*this = *this + vector;
 }
 
