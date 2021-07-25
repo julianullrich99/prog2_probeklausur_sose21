@@ -8,7 +8,8 @@ CVektor::CVektor(int n, float val) {
 }
 
 CVektor::CVektor() {
-	CVektor(0,0);
+	this->f = nullptr;
+	this->n = 0;
 }
 
 CVektor::CVektor(CVektor* vector) {
@@ -20,7 +21,12 @@ CVektor::CVektor(CVektor* vector) {
 }
 
 CVektor::~CVektor() {
-	delete this->f;
+	try {
+		std::cout << "deleted" << std::endl;
+		delete this->f;
+	} catch (...) {
+		std::cout << "not deleted" << std::endl;
+	}
 }
 
 float& CVektor::operator[](int x) {
@@ -32,7 +38,7 @@ int CVektor::length() {
 	return this->n;
 }
 
-void CVektor::operator=(CVektor &vector) { 
+void CVektor::operator=(CVektor vector) { 
 	delete this->f;
 	this->n = vector.length();
 	this->f =  new float[this->n];
@@ -53,8 +59,7 @@ CVektor CVektor::operator+(CVektor &vector) {
 }
 
 void CVektor::operator+=(CVektor &vector) { 
-	CVektor ret = *this + vector;
-	*(this) = ret;
+	*this = *this + vector;
 }
 
 

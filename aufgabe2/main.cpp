@@ -18,7 +18,9 @@ int main() {
 	std::cout << "after copy: " << vec2[2] << std::endl;
 	vec2.display();
 
-	CVektor vec3 = &vec2;
+	CVektor vec3 = CVektor(10,3);
+	vec3 = vec2 + vec2 + vec2;
+
 	std::cout << "after copy2: " << vec3[2] << std::endl;
 	vec3.display();
 
